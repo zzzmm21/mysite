@@ -10,6 +10,50 @@ import com.bitacademy.mysite.vo.UserVo;
 
 
 public class UserDao {
+	public boolean update(UserVo vo) {
+		boolean result = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {	
+			conn = getConnection();
+			
+			String sql = "update user set name =? password = ? where no = ? ";		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getPassword());
+			pstmt.setString(3, "");
+			pstmt.setString(4, "");
+			
+		
+			
+			int count = pstmt.executeUpdate();
+			
+			//5. 결과 처리
+			result = count == 1;
+			
+		} catch (SQLException e) {
+			System.out.println("Error:" + e);
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	public UserVo findByNo(Long no) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
 	public UserVo findByEmailAndPassword(String email, String password) {
 		UserVo result = null;
 		
@@ -107,5 +151,6 @@ public class UserDao {
 		} 
 		
 		return conn;
-	}	
+	}
+	
 }

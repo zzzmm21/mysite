@@ -43,6 +43,20 @@ public class UserController extends HttpServlet {
 			request
 				.getRequestDispatcher("/WEB-INF/views/user/joinsuccess.jsp")
 				.forward(request, response);
+		} else if("updateform".equals(action)) {
+			// Access Control
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)request.getAttribute("authUser");
+			if(authUser ==null) {
+				response.sendRedirect(request.getContextPath()+"/user?a=loginform");
+				return;
+			}
+			
+			UserVo vo =new UserDao().findByNo(authUser.getNo());
+			request.setAttribute("userVo",vo);
+			request
+			.getRequestDispatcher("/WEB-INF/views/user/updateform.jsp")
+			.forward(request, response);
 		} else if("loginform".equals(action)) {
 			request
 			.getRequestDispatcher("/WEB-INF/views/user/loginform.jsp")
@@ -66,6 +80,15 @@ public class UserController extends HttpServlet {
 			/* 로그인 처리 */
 			HttpSession session = request.getSession(true);
 			session.setAttribute("authUser", authUser);			
+			response.sendRedirect(request.getContextPath());
+		} else if("logout".equals(action)) {
+			HttpSession session = request.getSession();
+			if(session != null) {
+				session.removeAttribute("authUser");
+				session.invalidate();
+			}
+			response.sendRedirect(request.getContextPath());
+		} else {
 			response.sendRedirect(request.getContextPath());
 		}
 		
