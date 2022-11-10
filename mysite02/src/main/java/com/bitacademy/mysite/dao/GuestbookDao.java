@@ -11,7 +11,6 @@ import java.util.List;
 import com.bitacademy.mysite.vo.GuestbookVo;
 
 
-
 public class GuestbookDao {
 	public Boolean deleteByNoAndPassword(Long no, String password) {
 		boolean result = false;
