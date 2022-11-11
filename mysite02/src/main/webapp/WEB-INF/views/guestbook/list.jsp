@@ -27,7 +27,7 @@
 							<td>비밀번호</td><td><input type="password" name="password"></td>
 						</tr>
 						<tr>
-							<td colspan=4><textarea name="content" id="content"></textarea></td>
+							<td colspan=4><textarea name="contents" id="contents"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
@@ -50,7 +50,7 @@
 								<td><a href="<%=request.getContextPath() %>/deleteform&no=<%=vo.getNo() %>">삭제</a></td>
 							</tr>	
 							<tr>
-								<td colspan=4><%=vo.getContents().replaceAll("\n", "<br/>") %></td>
+								<td colspan=4><%=vo.getContents() %></td>
 							</tr>
 						</table>
 						<%
