@@ -23,11 +23,8 @@
 					<input type="text" id="kwd" name="kwd" value="">
 					<input type="submit" value="찾기">
 				</form>
-					<%
-					int count = list.size();
-					int index = 0;
-					for(BoardVo vo : list){
-					%>
+				<c:set var='count' value='${fn:length(list) }' />	
+				<c:forEach var='vo' items='${list }'  varStatus='status'>
 				<table class="tbl-ex">
 					<tr>
 						<th>번호</th>
@@ -42,16 +39,14 @@
 						<td style= "text-align:left; padding-left:${0*20}px">
 						<a href="<%=request.getContextPath() %>/board?a=view"></a>
 						</td>
-						<td><%=vo.getTitle() %></td>
-						<td><%=vo.getHit() %></td>
-						<td><%=vo.getRegdate() %></td>
-						<td><a href="/board?a=delete&no=${vo.no}" class="del">삭제</a></td>
+						<td>${vo.getname}</td>
+						<td>${vo.getHit}</td>
+						<td>${vo.regDate }</td>
+						<td><a href="${pageContext.request.contextPath }/delete${vo.no}" class="del">삭제</a></td>
 					</tr>
 
 				</table>
-				<%
-					}
-				%>
+				</c:forEach>
 				
 				<!-- pager 추가 -->
 				<div class="pager">
@@ -68,7 +63,7 @@
 				<!-- pager 추가 -->
 								
 				<div class="bottom">
-					<a href="<%=request.getContextPath() %>/board?a=writeform" id="new-book">글쓰기</a>
+					<a href="<%=request.getContextPath() %>/board?a=write" id="new-book">글쓰기</a>
 				</div>				
 			</div>
 		</div>

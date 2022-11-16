@@ -34,28 +34,22 @@
 						</tr>
 					</table>
 				</form>
-				<%
-					int count = list.size();
-					int index = 0;
-					for(GuestbookVo vo : list){
-				%>
-
+				<c:set var='count' value='${fn:length(list) }' />	
+				<c:forEach var='vo' items='${list }'  varStatus='status'>
 				<ul>
 					<li>
 						<table>
 							<tr>
-								<td>[<%=count-index++ %>]</td>
-								<td><%=vo.getName() %></td>
-								<td><%=vo.getRegDate() %></td>
-								<td><a href="<%=request.getContextPath() %>/guestbook?a=deleteform&no=<%=vo.getNo() %>">삭제</a></td>
+								<td>[${count-status.index }]</td>
+								<td>${vo.name }</td>
+								<td>${ vo.RegDate}</td>
+								<td><a href="${pageContext.request.contextPath }/delete/${vo.no }>">삭제</a></td>
 							</tr>	
 							<tr>
-								<td colspan=4><%=vo.getContents().replaceAll("\n", "<br/>") %></td>
+								<td colspan=4>${fn:replace(vo.contents, newLine,'<br/>') }</td>
 							</tr>
 						</table>
-						<%
-									}
-						%>
+						</c:forEach>
 						<br>
 					</li>
 				</ul>
