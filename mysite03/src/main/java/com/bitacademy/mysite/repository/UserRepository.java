@@ -1,17 +1,23 @@
 package com.bitacademy.mysite.repository;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bitacademy.mysite.exception.UserRepositoryException;
 import com.bitacademy.mysite.vo.UserVo;
 
 @Repository
 public class UserRepository {
+	@Autowired
+	private DataSource dataSource;
+	
 	public boolean update(UserVo vo) {
 		boolean result = false;
 		
@@ -19,7 +25,7 @@ public class UserRepository {
 		PreparedStatement pstmt = null;
 		
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			
 			if("".equals(vo.getPassword())) {
 				String sql = "update user set name=?, gender=? where no=?";
@@ -70,7 +76,7 @@ public class UserRepository {
 		ResultSet rs = null;
 		
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			
 			String sql = "select name, email, gender from user where no=?";
 			pstmt = conn.prepareStatement(sql);
@@ -107,7 +113,7 @@ public class UserRepository {
 		return result;
 	}
 	
-	public UserVo findByEmailAndPassword(String email, String password) {
+	public UserVo findByEmailAndPassword(String email, String password) throws UserRepositoryException {
 		UserVo result = null;
 		
 		Connection conn = null;
@@ -115,7 +121,7 @@ public class UserRepository {
 		ResultSet rs = null;
 		
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			
 			String sql = "select no, name from user where email=? and password=?";
 			pstmt = conn.prepareStatement(sql);
@@ -133,7 +139,7 @@ public class UserRepository {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("Error:" + e);
+			throw new UserRepositoryException(e.toString());
 		} finally {
 			try {
 				if(pstmt != null) {
@@ -158,7 +164,7 @@ public class UserRepository {
 		PreparedStatement pstmt = null;
 		
 		try {
-			conn = getConnection();
+			conn = dataSource.getConnection();
 			
 			String sql = "insert into user values (null, ?, ?, ?, ?, now())";
 			pstmt = conn.prepareStatement(sql);
@@ -190,20 +196,4 @@ public class UserRepository {
 		
 		return result;
 	}
-	
-	private Connection getConnection() throws SQLException {
-		Connection conn = null;
-
-		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			
-			String url = "jdbc:mysql://127.0.0.1:3306/webdb?charset=utf8";
-			conn = DriverManager.getConnection(url, "webdb", "webdb");
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
-		} 
-		
-		return conn;
-	}
-	
 }

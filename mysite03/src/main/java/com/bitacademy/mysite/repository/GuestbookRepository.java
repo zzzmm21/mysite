@@ -48,7 +48,8 @@ public class GuestbookRepository {
 		}
 		
 		return result;		
-	}
+	}	
+	
 	
 	public Boolean insert(GuestbookVo vo) {
 		boolean result = false;

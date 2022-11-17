@@ -20,9 +20,10 @@ public class BoardController {
 	
 	@RequestMapping("")
 	public String index(Model model) {
-		List<GuestbookVo> list = boardService.findContents(null);
 		
-		model.addAttribute("list",list);
+		
+		model.addAttribute("list",boardService.findContentsList(0));
 		return "board/list";
 	}
+	
 }

@@ -11,6 +11,7 @@ public class BoardService {
 	private BoardRepository boardRepository;
 	
 	public void addContents(BoardVo vo) {
+		return boardRepository.insert(vo);
 	}
 	
 	public BoardVo findContents(Long no) {
