@@ -19,7 +19,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form id="search_form" action="<%=request.getContextPath() %>/board" method="post">
+				<form id="search_form" action="${pageContext.request.contextPath }/board" method="post">
 					<input type="text" id="kwd" name="kwd" value="">
 					<input type="submit" value="찾기">
 				</form>
@@ -63,7 +63,7 @@
 				<!-- pager 추가 -->
 								
 				<div class="bottom">
-					<a href="<%=request.getContextPath() %>/board?a=write" id="new-book">글쓰기</a>
+					<a href="${pageContext.request.contextPath }/board/write" id="new-book">글쓰기</a>
 				</div>				
 			</div>
 		</div>
