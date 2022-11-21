@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<insert id="insert" parameterType="boardbookvo">
+	<insert id="insert" parameterType="boardvo">
 		<![CDATA[
 		insert into board values(null, #{title }, #{contents }, #{hit }, now(), #{group_no }, #{order_no }, #{depth}, #{user_no})
 		]]>
