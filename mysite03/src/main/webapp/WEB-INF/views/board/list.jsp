@@ -1,4 +1,4 @@
-<%@page import="java.util.List"%>
+	<%@page import="java.util.List"%>
 <%@page import="com.bitacademy.mysite.vo.BoardVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -39,8 +39,8 @@
 						<td style= "text-align:left; padding-left:${0*20}px">
 						<a href="<%=request.getContextPath() %>/board?a=view"></a>
 						</td>
-						<td>${vo.getname}</td>
-						<td>${vo.getHit}</td>
+						<td>${vo.title}</td>
+						<td>${vo.hit}</td>
 						<td>${vo.regDate }</td>
 						<td><a href="${pageContext.request.contextPath }/delete${vo.no}" class="del">삭제</a></td>
 					</tr>

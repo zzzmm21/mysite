@@ -1,5 +1,6 @@
 package com.bitacademy.mysite.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitacademy.mysite.repository.BoardRepository;
 import com.bitacademy.mysite.vo.BoardVo;
+
 @Service
 public class BoardService {
 	@Autowired
@@ -16,11 +18,11 @@ public class BoardService {
 		 boardRepository.insert(vo);
 	}
 	
-	public BoardVo findContents(Long no) {
-		return boardRepository.findByTitleandContents(no);
+	public List<BoardVo> findContents() {
+		return boardRepository.findAll();
 	}
 	
-	public BoardVo findContents(Long no, Long userNo) {
+	public BoardVo getfindContents(Long no, Long userNo) {
 		return null;
 	}
 	
@@ -36,8 +38,13 @@ public class BoardService {
 	}
 	
 	public void updateContents(BoardVo vo) {
+		boardRepository.update(vo);
 	}
 	
 	public void deleteContents(Long no, Long UserNo) {
+		BoardVo vo = new BoardVo();
+		vo.setNo(no);
+		vo.setUserNo(UserNo);
+		boardRepository.delete(vo);
 	}
 }
