@@ -3,11 +3,11 @@ package com.bitacademy.mysite.vo;
 public class GalleryVo {
 	private Long no;
 	private String url;
-	private String commetns;
+	private String comments;
 	
 	@Override
 	public String toString() {
-		return "GalleryVo [no=" + no + ", url=" + url + ", commetns=" + commetns + "]";
+		return "GalleryVo [no=" + no + ", url=" + url + ", comments=" + comments + "]";
 	}
 	public Long getNo() {
 		return no;
@@ -21,11 +21,11 @@ public class GalleryVo {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getCommetns() {
-		return commetns;
+	public String getComments() {
+		return comments;
 	}
-	public void setCommetns(String commetns) {
-		this.commetns = commetns;
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	
 }

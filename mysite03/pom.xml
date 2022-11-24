@@ -24,7 +24,8 @@
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-context</artifactId>
 		    <version>${org.springframework-version}</version>
-		    <exclusions>
+		    <!-- JCL 제외 -->
+			<exclusions>
 				<exclusion>
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
@@ -46,22 +47,39 @@
 		    <version>${org.springframework-version}</version>
 		</dependency>
 		
+		<!-- spring Aspect -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+				
 		<!-- Spring JDBC -->
 		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${org.springframework-version}</version>
-        </dependency>
-        
-		<!-- validation -->
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>6.2.3.Final</version>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${org.springframework-version}</version>
 		</dependency>
-
+	
+		<!-- validation -->
+		<dependency>
+		   <groupId>org.hibernate</groupId>
+		   <artifactId>hibernate-validator</artifactId>
+		   <version>6.2.3.Final</version>
+		</dependency>
 				
+		<!-- common fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+						
 		<!-- Apache Common DBCP -->
 		<dependency>
 		    <groupId>commons-dbcp</groupId>
@@ -93,7 +111,8 @@
 		    <groupId>jstl</groupId>
 		    <artifactId>jstl</artifactId>
 		    <version>1.2</version>
-		</dependency>	
+		</dependency>			
+	
 		<!-- Logback -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -104,8 +123,7 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
-		</dependency>
-	
+		</dependency>	
 	</dependencies>
 		
 	<build>

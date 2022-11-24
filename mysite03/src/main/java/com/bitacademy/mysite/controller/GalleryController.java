@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.mysite.service.FileUploadService;
@@ -24,11 +26,16 @@ public class GalleryController {
 		return "gallery/index";
 	}
 	
-	@RequestMapping("/upload")
-	public String upload(GalleryVo galleryVo, MultipartFile multipartFile) {
+	@RequestMapping(value = "/upload/", method = RequestMethod.POST)
+	public String delete(@PathVariable("file") MultipartFile multipartFile,
+			@RequestParam(value = "comments", required = true, defaultValue = "") String comments) {
+
 		String url = fileuploadService.restore(multipartFile);
-		galleryVo.setUrl(url);
-		galleryService.saveImages(galleryVo);
+		GalleryVo vo = new GalleryVo();
+		vo.setUrl(url);
+		vo.setComments(comments);
+		galleryService.saveImages(vo);
+		
 		return "redirect:/gallery";
 	}
 	

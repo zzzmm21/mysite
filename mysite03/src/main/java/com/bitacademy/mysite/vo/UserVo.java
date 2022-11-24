@@ -11,18 +11,19 @@ public class UserVo {
 	@NotEmpty
 	@Length(min=2, max=5)
 	private String name;
-	
+
 	@NotEmpty
 	@Email
 	private String email;
 	
 	@NotEmpty
-	@Length(min=4, max =16)
+	@Length(min=4, max=16)
 	private String password;
-	
 
 	private String gender;
 	private String joinDate;
+	private String role;
+	
 	public Long getNo() {
 		return no;
 	}
@@ -35,7 +36,6 @@ public class UserVo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	public String getEmail() {
 		return email;
 	}
@@ -44,11 +44,6 @@ public class UserVo {
 	}
 	public String getPassword() {
 		return password;
-	}
-	@Override
-	public String toString() {
-		return "UserVo [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
-				+ gender + ", joindate=" + joinDate + "]";
 	}
 	public void setPassword(String password) {
 		this.password = password;
@@ -65,6 +60,15 @@ public class UserVo {
 	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
-
-
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	@Override
+	public String toString() {
+		return "UserVo [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
+				+ gender + ", joinDate=" + joinDate + ", role=" + role + "]";
+	}
 }
