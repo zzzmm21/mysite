@@ -41,10 +41,10 @@ public class BoardService {
 		boardRepository.update(vo);
 	}
 	
-	public void deleteContents(Long no, Long UserNo) {
+	public void deleteContents(Long no, Long userNo) {
 		BoardVo vo = new BoardVo();
 		vo.setNo(no);
-		vo.setUserNo(UserNo);
+		vo.setUserNo(userNo);
 		boardRepository.delete(vo);
 	}
 }

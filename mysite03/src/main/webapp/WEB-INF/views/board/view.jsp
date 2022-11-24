@@ -32,8 +32,8 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="<%=request.getContextPath() %>/board">글목록</a>
-					<a href="<%=request.getContextPath() %>/board?a=modify">글수정</a>
+					<a href="${pageContext.request.contextPath }/board">글목록</a>
+					<a href="${pageContext.request.contextPath }/board?a=modify">글수정</a>
 				</div>
 			</div>
 		</div>

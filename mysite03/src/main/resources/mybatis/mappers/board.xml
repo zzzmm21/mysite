@@ -24,7 +24,7 @@
 	</update>
 	<delete id="delete" parameterType="boardvo">
 		<![CDATA[
-		delete from board where no = #{no } and password = #{password}
+		delete from board where no = #{no } and and user_no = #{userNo }
 		]]>
 	</delete>
 	<select id="findByTitleandContents" parameterType="long" resultType="boardvo">

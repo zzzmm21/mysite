@@ -37,14 +37,22 @@
 					<tr>
 						<td>3</td>
 						<td style= "text-align:left; padding-left:${0*20}px">
-						<a href="<%=request.getContextPath() %>/board?a=view"></a>
+						<a href="${pageContext.request.contextPath }/board/view/${vo.no }?p=${map.currentPage }&kwd=${map.keyword }">${vo.title }</a>
 						</td>
 						<td>${vo.title}</td>
 						<td>${vo.hit}</td>
 						<td>${vo.regDate }</td>
 						<td><a href="${pageContext.request.contextPath }/delete${vo.no}" class="del">삭제</a></td>
 					</tr>
-
+					
+					<tr>
+						<td>2</td>
+						<td style="text-align:left; padding-left:${20*1 }px"><img src='${pageContext.servletContext.contextPath }/assets/images/reply.png' /><a href="${pageContext.request.contextPath }/board/delete/${vo.no }?p=${map.currentPage }&kwd=${map.keyword }">두 번째 글입니다.</a></td>
+						<td>${vo.title}</td> 
+						<td>${vo.hit}</td>
+						<td>${vo.regDate}</td>
+						<td><a href="" class="del">삭제</a></td>
+					</tr>
 				</table>
 				</c:forEach>
 				

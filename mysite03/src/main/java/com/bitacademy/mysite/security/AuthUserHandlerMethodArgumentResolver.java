@@ -25,26 +25,24 @@ public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgum
 		if(session == null) {
 			return null;
 		}
+		
 		return session.getAttribute("authUser");
 	}
-
+	
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
-		
 		AuthUser authUser = parameter.getParameterAnnotation(AuthUser.class);
-		
-		//@AuthUser가 안 붙어 있으면...
+
+		// @AuthUser가 안 붙어 있으면...
 		if(authUser == null) {
 			return false;
-			
 		}
 		
-		// 파라미터 타입이 UserVo가 아니라면... 
+		// 파라미터 타입이 UserVo가 아니라면...
 		if(!parameter.getParameterType().equals(UserVo.class)) {
 			return false;
 		}
+		
 		return true;
 	}
-
-	
 }
