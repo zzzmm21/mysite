@@ -3,6 +3,7 @@ package com.bitacademy.mysite.config.web;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,12 +14,14 @@ import com.bitacademy.mysite.security.AuthUserHandlerMethodArgumentResolver;
 import com.bitacademy.mysite.security.LoginInterceptor;
 import com.bitacademy.mysite.security.LogoutInterceptor;
 
+@Configuration
 public class SecurityConfig implements WebMvcConfigurer {
-	// 	 Argument Resolvers 
+	// Argument Resolvers
 	@Bean
 	public HandlerMethodArgumentResolver authUserHandlerMethodArgumentResolver() {
 		return new AuthUserHandlerMethodArgumentResolver();
 	}
+	
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
 		resolvers.add(authUserHandlerMethodArgumentResolver());
@@ -27,19 +30,18 @@ public class SecurityConfig implements WebMvcConfigurer {
 	// Interceptors
 	@Bean
 	public HandlerInterceptor loginInterceptor() {
-		return new LoginInterceptor();
+		return new LoginInterceptor(); 
 	}
-	
+
 	@Bean
 	public HandlerInterceptor logoutInterceptor() {
-		return new LogoutInterceptor();
+		return new LogoutInterceptor(); 
 	}
-	
+
 	@Bean
 	public HandlerInterceptor authInterceptor() {
-		return new AuthInterceptor();
+		return new AuthInterceptor(); 
 	}
-	
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -48,8 +50,8 @@ public class SecurityConfig implements WebMvcConfigurer {
 			.addPathPatterns("/user/auth");
 		
 		registry
-		.addInterceptor(logoutInterceptor())
-		.addPathPatterns("/user/logout");
+			.addInterceptor(logoutInterceptor())
+			.addPathPatterns("/user/logout");
 		
 		registry
 		.addInterceptor(authInterceptor())
@@ -57,7 +59,5 @@ public class SecurityConfig implements WebMvcConfigurer {
 		.excludePathPatterns("/user/auth")
 		.excludePathPatterns("/user/logout")
 		.excludePathPatterns("/assets/**");
-		
 	}
-
 }

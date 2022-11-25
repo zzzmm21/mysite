@@ -29,16 +29,18 @@ public class UserController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(@ModelAttribute @Valid UserVo userVo, BindingResult result, Model model) {
 		if(result.hasErrors()) {
-//			List<ObjectError> errors = result.getAllErrors();
-//			for(ObjectError error : errors) {
-//				System.out.println(error);
-//			}
-			model.addAllAttributes(result.getModel());
+			//List<ObjectError> errors = result.getAllErrors();
+			//for(ObjectError error : errors) {
+			//	System.out.println(error);
+			//}
 			
-		//@ModelAttribute 대체가능
-		//	model.addAttribute("userVo",userVo); 
+			model.addAllAttributes(result.getModel());
+			// @ModelAttribute로 대체 가능
+			// model.addAttribute("userVo", userVo); 
+			
 			return "user/join";
 		}
+		
 		userService.join(userVo);
 		return "redirect:/user/joinsuccess";
 	}
@@ -56,8 +58,6 @@ public class UserController {
 	@Auth
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String update(Model model, @AuthUser UserVo authUser) {
-		// UserVo authUser = (UserVo)session.getAttribute("authUser");
-		
 		UserVo userVo = userService.findUser(authUser.getNo());
 		model.addAttribute("userVo", userVo);
 		return "user/update";
@@ -65,13 +65,20 @@ public class UserController {
 	
 	@Auth
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String update(UserVo userVo,@AuthUser  UserVo authUser) {
-
+	public String update(UserVo userVo, @AuthUser UserVo authUser) {
 		userVo.setNo(authUser.getNo());
 		userService.updateUser(userVo);
 		
 		authUser.setName(userVo.getName());
 		
 		return "redirect:/user/update";
+	}
+	
+	@RequestMapping("/auth")
+	public void auth() {
+	}
+
+	@RequestMapping("/logout")
+	public void logout() {
 	}
 }
