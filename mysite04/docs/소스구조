@@ -1,0 +1,37 @@
+
+[src/main/java]
+com.bitacademy.mysite.config
+	|- AppConfig
+	|- WebConfig
+com.bitacademy.mysite.config.app
+	|- DBConfig
+	|- MyBatisConfig
+com.bitacademy.mysite.config.web
+	|- 
+
+
+[src/main/resource]
+com.bitacademy.mysite.config.app
+	|- jdbc.properties
+com.bitacademy.mysite.config.app.mybatis
+	|- configuration.xml
+com.bitacademy.mysite.config.app.mybatis.mappers
+	|- user.xml
+	|- board.xml
+	|- ...	
+
+com.bitacademy.mysite.config.web
+
+
+
+com
+	|- bitacademy
+		|-mysite
+			|-config
+				|- AppConfig.class
+				|-WebConfig.class
+				|-/web
+				|     |-
+				|-/app
+					|-MyBatisConfig
+					|- / mybatis		
