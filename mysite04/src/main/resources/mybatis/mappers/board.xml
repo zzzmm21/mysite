@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<insert id="insert" parameterType="boardvo">
+		<![CDATA[
+		insert into board values(null, #{title }, #{contents }, #{hit }, now(), #{groupNo }, #{orderNo }, #{depth }, #{userNo })
+		]]>
+	</insert>
+	<select id="findAll" parameterType="map" resultType="boardvo">
+			<![CDATA[
+			select a.no, a.title, a.hit, date_format(reg_date, '%Y/%m/%d %H:%i:%s'), a.depth, a.user_no
+						from board a, user b where a.user_no = b.no
+						order by group_no desc , order_no asc	
+		]]>
+	</select>
+	<update id="update" parameterType="boardvo">
+		<![CDATA[
+			  update board 
+				  set title = #{title } contents =#{contents }
+				 where no = #{no }
+				   and user_no = #{userNo }	
+				   
+		]]>
+	</update>
+	<delete id="delete" parameterType="boardvo">
+		<![CDATA[
+		delete from board where no = #{no } and and user_no = #{userNo }
+		]]>
+	</delete>
+	<select id="findByTitleandContents" parameterType="long" resultType="boardvo">
+			<![CDATA[
+		 	select no, title, contents, user_no from board where no=#{no }	
+		]]>
+	</select>
+</mapper>
