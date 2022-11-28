@@ -18,7 +18,7 @@ public class ControllerExceptionHandler {
 		// 로깅
 		StringWriter errors = new StringWriter();
 		e.printStackTrace(new PrintWriter(errors));
-		System.out.println(errors.toString());
+		//System.out.println(errors.toString());
 		Logger.error(errors.toString());
 		
 		// 사과 페이지(HTML 응답, 정상종료)

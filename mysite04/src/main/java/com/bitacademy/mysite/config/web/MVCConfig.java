@@ -8,24 +8,24 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
 @Configuration
 @EnableWebMvc
-public class MVCConfig implements WebMvcConfigurer {
-	
+public class MVCConfig implements WebMvcConfigurer {	
 	// View Resolver
 	@Bean
 	public ViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-			viewResolver.setViewClass(JstlView.class);
-			viewResolver.setPrefix("/WEB-INF/views/");
-			viewResolver.setSuffix(".jsp");
-			return viewResolver;
+		viewResolver.setViewClass(JstlView.class);
+		viewResolver.setPrefix("/WEB-INF/views/");
+		viewResolver.setSuffix(".jsp");
+		
+		return viewResolver;
 	}
 	
-	// <!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 --> 
+	// 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
 }

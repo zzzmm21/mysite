@@ -2,13 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>Hello World</h1>
-</body>
-</html>
+	<div id="footer">
+		<p>(c)opyright 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</p>
+	</div>

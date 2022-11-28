@@ -53,7 +53,7 @@ public class BoardVo {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public int getGroupNo() {
+	public Integer getGroupNo() {
 		return groupNo;
 	}
 	public void setGroupNo(Integer groupNo) {
