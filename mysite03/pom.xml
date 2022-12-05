@@ -147,15 +147,15 @@
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
+				<artifactId>tomcat-maven-plugin</artifactId>
 				<version>1.1</version>
 				<configuration>
-					<url>http://192.168.0.96:8080/manager/text</url>
-					<path>/mysit03</path>
+					<url>http://192.168.0.93:8080/manager/text</url>
+					<path>/mysite03</path>
 					<username>admin</username>
 					<password>manager</password>
 				</configuration>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>	
 </project>
