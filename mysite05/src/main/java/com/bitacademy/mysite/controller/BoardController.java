@@ -77,7 +77,7 @@ public class BoardController {
 
 	@Auth
 	@RequestMapping(value = "/replay/{no}")
-	public String reply(@PathVariable("no") Long no, Model model) {
+	public String replay(@PathVariable("no") Long no, Model model) {
 		BoardVo boardVo = boardService.getContents(no);
 		boardVo.setOrderNo(boardVo.getOrderNo() + 1);
 		boardVo.setDepth(boardVo.getDepth() + 1);
@@ -87,4 +87,3 @@ public class BoardController {
 		return "board/replay";
 	}
 }
-

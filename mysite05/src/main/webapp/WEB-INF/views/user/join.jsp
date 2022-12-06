@@ -23,7 +23,9 @@
 					method="post"
 					action="${pageContext.request.contextPath }/user/join">
 					
-					<label class="block-label" for="name"><spring:message code="Join.form.label.name"/></label>
+					<label class="block-label" for="name">
+						<spring:message code="Join.form.label.name" text="..."/>
+					</label>
 					<form:input path="name" />					
 					<p style="text-align: left; padding: 2px 0 2px 0; color: red">
 						<spring:hasBindErrors name="userVo">
